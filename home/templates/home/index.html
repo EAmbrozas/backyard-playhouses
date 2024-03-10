@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}Home Page{% endblock extra_title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<!-- Page-specific content goes here -->
+<h1>Welcome to Our Backyard Playhouses!</h1>
+<p>Explore our range of playhouses and find the perfect one for your backyard.</p>
+{% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'js/custom.js' %}"></script>
+{% endblock extra_js %}
