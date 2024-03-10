@@ -18,14 +18,19 @@
     {% block extra_css %}{% endblock extra_css %}
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <!-- Your site's navigation bar, logo, etc. -->
+        <!-- Navigation -->
+        {% include 'includes/_navbar.html' %}
     </header>
 
     <!-- Main content block -->
     {% block content %}
     {% endblock content %}
 
+    <!-- Footer -->
+    {% include 'includes/_footer.html' %}
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
