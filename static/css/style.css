@@ -104,3 +104,73 @@
     height: 100vh;
     background-color: rgba(5, 25, 34, 0.5);
 }
+
+/**********************************************************************/
+/* About section */
+#about-us {
+    position: relative;
+}
+
+.features {
+    gap: 1rem;
+}
+
+.features h3 {
+    width: 100%;
+}
+
+.feature {
+    max-width: 380px;
+    gap: 2rem;
+}
+
+.icon {
+    height: 40px;
+    width: 40px;
+    border: 1px dotted var(--bs-warning);
+    border-radius: 100%;
+    color: var(--bs-warning);
+}
+
+.left-side {
+  width: 60%;
+}
+
+.right-side {
+    width: 40%;
+    background-image: url('/static/images/about-img.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+@media only screen and (max-width: 1400px) {
+  .feature {
+    max-width: 300px;
+    gap: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .left-side {
+    width: 50%;
+  }
+
+  .right-side {
+    width: 50%;
+
+  }
+}
+
+@media only screen and (max-width: 766px) {
+  .left-side {
+    width: 100%;
+  }
+
+  .right-side {
+    display: none;
+
+  }
+  .feature {
+    max-width: 100%;
+  }
+}
