@@ -1,31 +1,46 @@
 /**********************************************************************/
+/* Bootstrap color reset */
+:root {
+    --bs-primary: #007bff; /* Primary color */
+    --bs-secondary: #6c757d; /* Secondary color */
+    --bs-success: #28a745; /* Success color */
+    --bs-danger: #dc3545; /* Danger color */
+    --bs-warning: #F28123; /* Warning color */
+    --bs-info: #17a2b8; /* Info color */
+    --bs-light: #f8f9fa; /* Light color */
+    --bs-dark: #051922; /* Dark color */
+    --bs-text-color: #212529; /* Default text color */
+    --bs-text-muted: #6c757d; /* Muted text color */
+  }
+
+/**********************************************************************/
 /* Bootstrap css reset */
 /* Custom Primary Button Styles */
 .btn-primary {
-    background-color: #F28123;
-    border-color: #F28123;
-    color: #ffffff;
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+    color: var(--bs-light);
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    background-color: #051922;
-    border-color: #051922;
+    background-color: var(--bs-dark);
+    border-color: var(--bs-dark);
 }
 
 /* Custom Secondary Button Styles */
 .btn-secondary {
     background-color: transparent;
-    border-color: #F28123;
-    color: #ffffff;
+    border-color: var(--bs-warning);
+    color: var(--bs-light);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus,
 .btn-secondary:active {
-    background-color: #051922;
-    border-color: #051922;
+    background-color: var(--bs-dark);
+    border-color: var(--bs-dark);
 }
 
 /* Button padding and font */
