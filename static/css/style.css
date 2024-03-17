@@ -111,6 +111,7 @@
 /* About section */
 #about-us {
     position: relative;
+    background-color: var(--bs-light);
 }
 
 .features {
@@ -175,4 +176,34 @@
   .feature {
     max-width: 100%;
   }
+}
+
+/**********************************************************************/
+/* Recent projects section */
+.project img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.modal-body img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.view-details-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.view-details-link:hover, .view-details-link:focus {
+  text-decoration: none;
+  color: var(--bs-warning);
 }
