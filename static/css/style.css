@@ -59,3 +59,8 @@
     background-size: cover;
     background-position: center;
 }
+
+.hero-background {
+    height: 100vh;
+    background-color: rgba(5, 25, 34, 0.5);
+}
