@@ -1,4 +1,42 @@
 /**********************************************************************/
+/* Bootstrap css reset */
+/* Custom Primary Button Styles */
+.btn-primary {
+    background-color: #F28123;
+    border-color: #F28123;
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #051922;
+    border-color: #051922;
+}
+
+/* Custom Secondary Button Styles */
+.btn-secondary {
+    background-color: transparent;
+    border-color: #F28123;
+    color: #ffffff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #051922;
+    border-color: #051922;
+}
+
+/* Button padding and font */
+.btn-primary, .btn-secondary {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+}
+
+/**********************************************************************/
 /* Hero section */
 #hero {
     height: 100vh;
