@@ -13,6 +13,46 @@
     --bs-text-muted: #6c757d; /* Muted text color */
   }
 
+  body {
+    color: var(--bs-text-color);
+  }
+  
+  .text-primary {
+    color: var(--bs-primary) !important;
+  }
+  
+  .text-secondary {
+    color: var(--bs-secondary) !important;
+  }
+  
+  .text-success {
+    color: var(--bs-success) !important;
+  }
+  
+  .text-danger {
+    color: var(--bs-danger) !important;
+  }
+  
+  .text-warning {
+    color: var(--bs-warning) !important;
+  }
+  
+  .text-info {
+    color: var(--bs-info) !important;
+  }
+  
+  .text-light {
+    color: var(--bs-light) !important;
+  }
+  
+  .text-dark {
+    color: var(--bs-dark) !important;
+  }
+  
+  .text-muted {
+    color: var(--bs-text-muted) !important;
+  }
+
 /**********************************************************************/
 /* Bootstrap css reset */
 /* Custom Primary Button Styles */
