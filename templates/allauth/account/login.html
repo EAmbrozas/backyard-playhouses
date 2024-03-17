@@ -1,4 +1,7 @@
-{% extends "account/base_entrance.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}Home Page{% endblock extra_title %}
 {% load i18n %}
 {% load allauth account %}
 {% block head_title %}
