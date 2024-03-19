@@ -207,3 +207,22 @@
   text-decoration: none;
   color: var(--bs-warning);
 }
+
+/**********************************************************************/
+/* How we work section */
+#how-we-work {
+  background-color: var(--bs-light)
+}
+
+.process-step {
+  margin: 20px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 992px) {
+  #how-we-work .fa-angle-right {
+      transform: rotate(90deg);
+      display: block;
+  }
+}
+
