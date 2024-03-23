@@ -211,7 +211,7 @@
 /**********************************************************************/
 /* How we work section */
 #how-we-work {
-  background-color: var(--bs-light)
+  background-color: var(--bs-light);
 }
 
 .process-step {
@@ -226,3 +226,24 @@
   }
 }
 
+/**********************************************************************/
+/* Testimonials section */
+#testimonials {
+  background-color: #fff;
+}
+
+.testimonial-card {
+  border: none;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.testimonial-text {
+  font-style: italic;
+  color: var(--bs-dark);
+}
+
+.testimonial-author {
+  font-weight: bold;
+  color: var(--bs-warning);
+}
