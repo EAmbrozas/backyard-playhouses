@@ -32,6 +32,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-eambrozas-backyardplayh-s66pc6ybgg0.ws-eu110.gitpod.io']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-eambrozas-backyardplayh-s66pc6ybgg0.ws-eu110.gitpod.io',
+]
+
+
 
 # Application definition
 
@@ -49,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     #other
     'home',
+    'profiles',
     'reviews',
 ]
 
@@ -67,6 +73,8 @@ LOGIN_REDIRECT_URL = '/'
 # Optional: Require email verification before considering a user as "verified"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

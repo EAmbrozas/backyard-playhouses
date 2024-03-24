@@ -35,11 +35,16 @@
                         <i class="fa-solid fa-user"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
-                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                        {% endif %}
                     </ul>
                 </li>
-            </ul>
+            </ul>            
         </div>
     </div>
 </nav>
