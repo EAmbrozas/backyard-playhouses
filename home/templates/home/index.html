@@ -195,68 +195,67 @@
     </div>
 </section>
 
-
-
 <!-- Testimonials Section -->
 <section id="testimonials" class="py-5">
     <div class="container">
         <h2 class="text-center mb-5">What Our Customers Say</h2>
         <div class="row">
-            <div class="col-md-4 mb-3">
+            {% for review in latest_reviews %}
+            <div class="col-md-6 col-lg-4 mb-3">
                 <div class="card testimonial-card shadow">
                     <div class="card-body">
                         <!-- Star Rating -->
-                        <div class="testimonial-rating mb-2">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
+                        <div class="testimonial-rating mb-2 d-flex justify-content-between">
+                            <small class="text-muted">Rating: {{ review.stars|safe }}</small>
+                            <div>
+                                {% if request.user.is_authenticated and request.user.is_staff %}
+                                <a href="{% url 'edit_review' review.id %}?next={{ request.path }}" class="text-warning me-3"><i class="fa-solid fa-pen"></i></a>
+                                <a href="" class="text-danger"><i class="fa-solid fa-trash"></i></a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <p class="testimonial-text">"Backyard Playhouses transformed our garden into a wonderland! Our kids are outside playing every day, rain or shine. The craftsmanship is outstanding, and the design is enchanting."</p>
+                        <p class="testimonial-text">"{{ review.content|truncatechars:80 }}"</p>
                         <hr>
-                        <p class="testimonial-author mb-0"><strong>Jane Doe</strong>, Happy Parent</p>
+                        <div class="w-100 d-flex justify-content-between align-items-center">
+                            <p class="testimonial-author mb-0"><strong>{{ review.author }}</strong></p>
+                            {% if review.content|length > 80 %}
+                            <a class="text-warning text-decoration-none" href="#reviewModal" data-bs-toggle="modal" data-bs-target="#reviewModal" onclick="setModalContent('{{ review.content|escapejs }}')">Read More</a>
+                            {% endif %}
+                        </div>
+                        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="reviewModalLabel">Full Review</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" id="reviewModalBody">
+                                        <!-- Full review content will be set here by the JavaScript function -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="card testimonial-card shadow">
-                    <div class="card-body">
-                        <!-- Star Rating -->
-                        <div class="testimonial-rating mb-2">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="testimonial-text">"The team was professional, friendly, and incredibly creative. They worked with us to design a playhouse that was both beautiful and functional. Highly recommend!"</p>
-                        <hr>
-                        <p class="testimonial-author mb-0"><strong>John Smith</strong>, Satisfied Customer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="card testimonial-card shadow">
-                    <div class="card-body">
-                        <!-- Star Rating -->
-                        <div class="testimonial-rating mb-2">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="testimonial-text">"Absolutely blown away by the quality and attention to detail. Our bespoke playhouse is the envy of the neighborhood. It's not just a playhouse; it's a work of art."</p>
-                        <hr>
-                        <p class="testimonial-author mb-0"><strong>Emily Johnson</strong>, Proud Mom</p>
-                    </div>
-                </div>
-            </div>
+            {% empty %}
+            <p class="text-center">No reviews yet.</p>
+            <!-- Modal Structure -->
+
+            {% endfor %}
         </div>
+        {% if latest_reviews %}
+        <div class="text-center">
+            <a href="{% url 'review_list' %}" class="btn btn-primary mt-3">View All Reviews</a>
+        </div>
+        {% endif %}
     </div>
 </section>
-
+<script>
+    function setModalContent(content) {
+        document.getElementById('reviewModalBody').innerText = content;
+    }
+</script>
 {% endblock content %}
 
 {% block extra_js %}

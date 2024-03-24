@@ -6,6 +6,8 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm
 from django.contrib import messages
+from reviews.models import Review
+
 
 @login_required
 def profile_view(request):
@@ -23,7 +25,10 @@ def profile_view(request):
             messages.warning(request, 'Please select an image to upload.')
     else:
         p_form = ProfileUpdateForm(instance=profile)
-    context = {'p_form': p_form}
+
+    reviews = Review.objects.all().order_by('-date_posted')[:6]
+    
+    context = {'p_form': p_form, 'reviews': reviews}
     return render(request, 'profiles/profile.html', context)
 
 @login_required

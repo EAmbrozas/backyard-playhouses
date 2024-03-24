@@ -62,28 +62,74 @@
                     </ul>
                 </div>
             </div>
-
+            <!-- Reviews and rating -->
             <div class="card">
                 <div class="card-header">
                     <h4>Manage Reviews</h4>
                 </div>
                 <div class="card-body">
-                    <a href="" class="btn btn-success mb-3">Add New Review</a>
+                    <a href="{% url 'add_review' %}" class="btn btn-success mb-4">Add New Review</a>
                     <h5>My Reviews</h5>
-                    <!-- Placeholder for Reviews List -->
-                    <ul class="list-group">
-                        <!-- Review -->
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Review Content
-                            <div>
-                                <a href="" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="" class="btn btn-sm btn-danger">Delete</a>
-                            </div>
-                        </li>
-                    </ul>
+                    {% if reviews %}
+                        <div class="row">
+                            {% for review in reviews %}
+                                <div class="col-lg-6">
+                                    <div class="card mb-3 shadow">
+                                        <div class="card-body">
+                                            <!-- Star Rating -->
+                                            <div class="testimonial-rating mb-2 d-flex justify-content-between">
+                                                <small class="text-muted">Rating: {{ review.stars|safe }}</small>
+                                                <div>
+                                                    {% if request.user.is_authenticated and request.user.is_staff %}
+                                                    <a href="{% url 'edit_review' review.id %}?next={{ request.path }}" class="text-warning me-3"><i class="fa-solid fa-pen"></i></a>
+                                                    <a href="{% url 'delete_review' review.id %}?next={{ request.path }}" class="text-danger">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <p class="testimonial-text">"{{ review.content|truncatechars:80 }}"</p>
+                                            <hr>
+                                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                                <p class="testimonial-author mb-0"><strong>{{ review.author }}</strong></p>
+                                                {% if review.content|length > 80 %}
+                                                <a class="text-warning text-decoration-none" href="#reviewModal" data-bs-toggle="modal" data-bs-target="#reviewModal" onclick="setModalContent('{{ review.content|escapejs }}')">Read More</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="reviewModalLabel">Full Review</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" id="reviewModalBody">
+                                                <!-- Review content will be inserted here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'review_list' %}" class="btn btn-primary mt-3">View All Reviews</a>
+                    {% else %}
+                        <p class="text-muted">No reviews yet.</p>
+                    {% endif %}
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
+
+<script>
+    function setModalContent(content) {
+        document.getElementById('reviewModalBody').innerText = content;
+    }
+</script>
+    
 {% endblock %}
