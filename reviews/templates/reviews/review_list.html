@@ -11,7 +11,15 @@
                     <div class="card-body">
                         <!-- Star Rating -->
                         <div class="testimonial-rating mb-2 d-flex justify-content-between">
-                            <!-- Rating stars and edit/delete buttons -->
+                            <small class="text-muted">Rating: {{ review.stars|safe }}</small>
+                            <div>
+                                {% if request.user.is_authenticated and request.user.is_staff %}
+                                <a href="{% url 'edit_review' review.id %}?next={{ request.path }}" class="text-warning me-3"><i class="fa-solid fa-pen"></i></a>
+                                <a href="{% url 'delete_review' review.id %}?next={{ request.path }}" class="text-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                                {% endif %}
+                            </div>
                         </div>
                         <p class="testimonial-text">"{{ review.content|truncatechars:80 }}"</p>
                         <hr>
