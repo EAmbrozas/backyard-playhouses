@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Are you sure you want to delete this project?</h2>
+    <form action="{% url 'projects:delete_project' project.id %}" method="post">
+        {% csrf_token %}
+        <!-- Hidden input to carry the "next" URL, if needed -->
+        <input type="hidden" name="next" value="{{ request.GET.next|default:'projects:project_list' }}">
+        <button type="submit" class="btn btn-danger">Confirm</button>
+        <a href="{{ request.GET.next|default:'projects:project_list' }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

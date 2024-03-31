@@ -203,36 +203,6 @@
 }
 
 /**********************************************************************/
-/* Recent projects section */
-.project img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.modal-body img {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.view-details-link {
-  text-decoration: none;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-  font-weight: bolder;
-  letter-spacing: 1px;
-}
-
-.view-details-link:hover, .view-details-link:focus {
-  text-decoration: none;
-  color: var(--bs-warning);
-}
-
-/**********************************************************************/
 /* How we work section */
 #how-we-work {
   background-color: var(--bs-light);
@@ -351,3 +321,29 @@ footer .btn-primary {
   }
 }
 
+
+/**********************************************************************/
+/* Project Card */
+.playhouse_edit_buttons {
+  display: inline-flex;
+  gap: 10px;
+  float: right;
+}
+
+.carousel-item {
+  height: 400px;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}

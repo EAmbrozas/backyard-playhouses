@@ -53,9 +53,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     #other
+    'django_summernote',
     'home',
     'profiles',
     'reviews',
+    'projects',
 ]
 
 AUTHENTICATION_BACKENDS = (

@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from reviews.models import Review
+from projects.models import Project
 
 def homepage_view(request):
-    # Fetch the latest 3 reviews
+    latest_projects = Project.objects.all().order_by('-date_posted')[:6]
     latest_reviews = Review.objects.all().order_by('-date_posted')[:6]
-    return render(request, 'home/index.html', {'latest_reviews': latest_reviews})
+    context = {
+        'latest_projects': latest_projects,
+        'latest_reviews': latest_reviews,
+    }
+    return render(request, 'home/index.html', context)

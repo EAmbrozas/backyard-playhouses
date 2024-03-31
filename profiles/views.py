@@ -6,6 +6,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm
 from django.contrib import messages
+from projects.models import Project
 from reviews.models import Review
 
 
@@ -26,9 +27,14 @@ def profile_view(request):
     else:
         p_form = ProfileUpdateForm(instance=profile)
 
+    recent_projects = Project.objects.all().order_by('-date_posted')[:6]
     reviews = Review.objects.all().order_by('-date_posted')[:6]
     
-    context = {'p_form': p_form, 'reviews': reviews}
+    context = {
+        'p_form': p_form, 
+        'reviews': reviews,
+        'recent_projects': recent_projects,
+        }
     return render(request, 'profiles/profile.html', context)
 
 @login_required
