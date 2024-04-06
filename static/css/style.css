@@ -324,10 +324,17 @@ footer .btn-primary {
 
 /**********************************************************************/
 /* Project Card */
+
 .playhouse_edit_buttons {
-  display: inline-flex;
-  gap: 10px;
-  float: right;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.view-details {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
 }
 
 .carousel-item {
@@ -346,4 +353,26 @@ footer .btn-primary {
   height: 200px;
   object-fit: cover;
   object-position: center;
+}
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 30px;
+}
+
+.card-body {
+    flex: 1;
 }

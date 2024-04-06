@@ -12,10 +12,10 @@
                         {% with project.images.first as image %}
                         <img src="{{ image.image.url }}" alt="{{ project.title }}" class="img-fluid mb-2">
                         {% endwith %}
-                        <h3 class="card-title">{{ project.title|truncatechars:20 }}</h3>
-                        <p class="card-text">{{ project.description|truncatewords_html:20|safe }}</p>
+                        <h3 class="card-title">{{ project.title }}</h3>
+                        <p class="card-text clamp-text">{{ project.description|truncatewords_html:20|safe }}</p>
 
-                        <a href="#" class="text-warning text-decoration-none fw-bold" data-bs-toggle="modal" data-bs-target="#projectModal{{ project.id }}">View Details <i class="fa-solid fa-angle-right"></i></a>
+                        <a href="#" class="text-warning text-decoration-none fw-bold view-details" data-bs-toggle="modal" data-bs-target="#projectModal{{ project.id }}">View Details <i class="fa-solid fa-angle-right"></i></a>
                         <div class="playhouse_edit_buttons">
                             {% if request.user.is_authenticated and request.user.is_staff %}
                             <a href="{% url 'projects:edit_project' project.id %}?next={{ request.path }}" class="text-warning me-3"><i class="fa-solid fa-pen"></i></a>
@@ -75,4 +75,33 @@
         <p>No projects found.</p>
     {% endif %}
 </div>
+<script>
+function clampTextLines(clampElementsSelector, maxLines) {
+    const clampElements = document.querySelectorAll(clampElementsSelector);
+    const adjustClamp = () => {
+        clampElements.forEach((elem) => {
+            // Remove previous styles to get the natural height
+            elem.style.maxHeight = null;
+            elem.style.overflow = 'visible';
+
+            const lineHeight = parseFloat(getComputedStyle(elem).lineHeight);
+            const maxHeight = lineHeight * maxLines;
+
+            if (elem.scrollHeight > maxHeight) {
+                elem.style.maxHeight = `${maxHeight}px`;
+                elem.style.overflow = 'hidden';
+            }
+        });
+    };
+
+    window.addEventListener('resize', adjustClamp);
+    adjustClamp(); // Initial adjustment
+}
+
+// Usage: Call this function with the selector of your text containers and the desired number of lines
+document.addEventListener("DOMContentLoaded", function() {
+    clampTextLines('.clamp-text', 3);
+});
+</script>
+
 {% endblock %}

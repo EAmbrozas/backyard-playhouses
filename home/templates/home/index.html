@@ -79,13 +79,13 @@
         <h2 class="text-center mb-5">Recent Projects</h2>
         <div class="row">
             {% for project in latest_projects %}
-            <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="col-12 col-md-6 col-lg-4 mb-3">
                 <div class="card project-card shadow">
                     <img src="{{ project.images.first.image.url }}" class="card-img-top" alt="{{ project.title }}">
                     <div class="card-body">
                         <h3 class="card-title">{{ project.title|truncatechars:20 }}</h3>
                         <p class="card-text">{{ project.description|truncatewords_html:20|safe }}</p>
-                        <a href="#" class="text-warning text-decoration-none fw-bold" data-bs-toggle="modal" data-bs-target="#projectModal{{ project.id }}">View Details <i class="fa-solid fa-angle-right"></i></a>
+                        <a href="#" class="text-warning text-decoration-none fw-bold view-details" data-bs-toggle="modal" data-bs-target="#projectModal{{ project.id }}">View Details <i class="fa-solid fa-angle-right"></i></a>
                         <div class="playhouse_edit_buttons">
                             {% if request.user.is_authenticated and request.user.is_staff %}
                             <a href="{% url 'projects:edit_project' project.id %}?next={{ request.path }}" class="text-warning me-3"><i class="fa-solid fa-pen"></i></a>
