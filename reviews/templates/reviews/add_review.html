@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Add a New Review</h2>
-    <form method="post">
+    <h2>Add a New Project</h2>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <!-- Render form fields here -->
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit Review</button>
+        <input type="file" name="images" multiple>
+        <button type="submit">Submit</button>
     </form>
 </div>
 {% endblock %}
